@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Deletar Defesa{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Deletar Defesa</h2>
+    <p>Tem certeza que deseja deletar a defesa da monografia: <strong>{{ banca.monografia.titulo }}</strong>?</p>
+
+    <form method="post" class="delete-form">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="width: 100%;">Deletar</button>
+        <div class="cancel-wrapper">
+            <a href="{% url 'listar_defesas' %}" class="cancel-btn">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

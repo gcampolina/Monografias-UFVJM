@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Lista de Monografias{% endblock %}
+
+{% block content %}
+<div class="form-container2">
+    <h2>Monografias</h2>
+
+
+    <form method="get" class="mb-3">
+    <div class="input-wrapper">
+        <input type="text" name="q" placeholder="Pesquisar por título, orientador, coorientador ou palavra-chave" 
+               value="{{ request.GET.q }}">
+        <button type="submit" class="botaopesquisa"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    </form>
+
+
+    
+    {% if monografias %}
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Orientador</th>
+                <th>Coorientador</th>
+                <th>Ações</th>
+
+              
+            </tr>
+        </thead>
+        <tbody>
+            {% for monografia in monografias %}
+            <tr>
+                <td>{{ monografia.titulo }}</td>
+                <td>{{ monografia.autor.user.get_full_name }}</td>
+                <td>{{ monografia.orientador.user.get_full_name }}</td>
+                <td>
+                {% if monografia.coorientador %}
+                    {{ monografia.coorientador.user.get_full_name }}
+                {% else %}
+                    -
+                {% endif %}
+                </td>
+                <td>
+                    <div class="btns">
+                        {% if is_admin %}
+                            <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
+                            <a href="{% url 'editar_monografia' monografia.pk %}" class="btn btn-sm btn-primary">Editar</a>
+                            <a href="{% url 'deletar_monografia' monografia.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+                        {% else %}
+                            {% if monografia.arquivo %}
+                                <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Nenhuma monografia encontrada.</p>
+    {% endif %}
+
+<div class="options">
+        <p><a href="{% url 'dashboard' %}">Voltar para o dashboard</a></p>
+    </div>
+</div>
+{% endblock %}

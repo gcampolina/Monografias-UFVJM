@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Dashboard Aluno</h1>
+    
+    <div class="menu">
+        <h7>Monografias:</h7>
+        <a href="{% url 'listar_monografias' %}"><button class="btn-primary" style="width: 20%;">Listar Monografias</button></a>
+
+        <h7>Defesas:</h7>
+        <a href="{% url 'listar_defesas' %}"><button class="btn-primary" style="width: 20%;">Ver Defesas Agendadas</button></a>
+    </div>
+{% endblock %}

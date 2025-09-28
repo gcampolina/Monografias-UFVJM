@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Logout</h2>
+    <p>Deseja realmente deslogar?</p>
+    
+    <form method="post" action="{% url 'account_logout' %}" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="btn-primary" style="background-color: #dc3545;">Sair</button>
+        <div class="cancel-wrapper">
+            <a href="javascript:history.back()" class="cancel-btn">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

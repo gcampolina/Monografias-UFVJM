@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Novo Aluno{% endblock %}
+{% block content %}
+<div class="form-container">
+   <h2>Agendar Defesa</h2>
+<form method="post" class="show-labels">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{ form.monografia.label_tag }}
+        {{ form.monografia }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.professores_avaliadores.label_tag }}
+        {{ form.professores_avaliadores }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.data.label_tag }}
+        {{ form.data }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.horario.label_tag }}
+        {{ form.horario }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.local.label_tag }}
+        {{ form.local }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agendar</button>
+</form>
+</div>
+{% endblock %}

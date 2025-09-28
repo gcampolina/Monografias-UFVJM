@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Dashboard Admin</h1>
+    
+    <div class="menu">
+        <h7>Monografias:</h7>
+        <a href="{% url 'criar_monografia' %}"><button class="btn-primary" style="width: 20%;">Criar Monografia</button></a>
+        <a href="{% url 'listar_monografias' %}"><button class="btn-primary" style="width: 20%;">Listar Monografias</button></a>
+
+        
+
+        <h7>Defesas:</h7>
+        <a href="{% url 'agendar_defesa' %}"><button class="btn-primary" style="width: 20%;">Agendar Defesa</button></a>
+        <a href="{% url 'listar_defesas' %}"><button class="btn-primary" style="width: 20%;">Listar Defesas</button></a>
+
+
+        <h7>Usuários:</h7>
+        <a href="{% url 'criar_aluno' %}"><button class="btn-primary" style="width: 20%;">Criar Aluno</button></a>
+        <a href="{% url 'criar_professor' %}"><button class="btn-primary" style="width: 20%;">Criar Professor</button></a>
+    </div>
+{% endblock %}

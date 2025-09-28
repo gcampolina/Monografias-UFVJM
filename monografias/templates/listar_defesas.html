@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Defesas Agendadas{% endblock %}
+
+{% block content %}
+<div class="form-container2">
+    <h2>Defesas Agendadas</h2>
+
+    <form method="get" class="mb-3">
+        <div class="input-wrapper">
+            <input type="text" name="q" placeholder="Pesquisar por monografia ou professor" value="{{ request.GET.q }}">
+            <button type="submit" class="botaopesquisa"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </form>
+
+    {% if defesas %}
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Monografia</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Local</th>
+            <th>Status</th>
+            <th>Banca</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for banca in defesas %}
+        <tr>
+            <td>{{ banca.monografia.titulo }}</td>
+            <td>{{ banca.data|date:"d/m/Y" }}</td>
+            <td>{{ banca.horario }}</td>
+            <td>{{ banca.local }}</td>
+            <td>{{ banca.get_status_display }}</td>
+            <td>
+                {% for professor in banca.professores_avaliadores.all %}
+                    {{ professor.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% if banca.pode_gerenciar %}
+                <div class="btns">
+                    <a href="{% url 'gerenciar_defesa' banca.pk %}" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="{% url 'deletar_defesa' banca.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+                </div>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+                
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    {% else %}
+    <p>Nenhuma defesa agendada.</p>
+    {% endif %}
+
+    <div class="options">
+        <p><a href="{% url 'dashboard' %}">Voltar para o dashboard</a></p>
+    </div>
+</div>
+{% endblock %}

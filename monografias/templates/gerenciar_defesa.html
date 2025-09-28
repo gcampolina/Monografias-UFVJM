@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Gerenciar Defesa{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Gerenciar Defesa</h2>
+
+    <p><strong>Monografia:</strong> {{ banca.monografia.titulo }}</p>
+    <p><strong>Data:</strong> {{ banca.data|date:"d/m/Y" }}</p>
+    <p><strong>Horário:</strong> {{ banca.horario }}</p>
+    <p><strong>Local:</strong> {{ banca.local }}</p>
+    <p><strong>Status atual:</strong> {{ banca.get_status_display }}</p>
+    <p><strong>Professores da banca:</strong>
+        {% for professor in banca.professores_avaliadores.all %}
+            {{ professor.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    {% if is_admin or is_professor %}
+    <form method="post" class="show-labels">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_nota_final">Nota Final (0-100)</label>
+            <input type="number" min="0" max="100" name="nota_final" 
+                   class="form-control" placeholder="Digite a nota final" 
+                   value="{% if banca.nota_final is not None %}{{ banca.nota_final }}{% endif %}">
+        </div>
+
+        <div class="mb-3">
+            <label for="id_status">Status da Defesa</label>
+            <select name="status" class="form-select">
+                <option value="AGENDADA" {% if banca.status == 'AGENDADA' %}selected{% endif %}>Agendada</option>
+                <option value="CANCELADA" {% if banca.status == 'CANCELADA' %}selected{% endif %}>Cancelada</option>
+                <option value="REALIZADA" {% if banca.status == 'REALIZADA' %}selected{% endif %}>Realizada</option>
+            </select>
+        </div>
+
+        
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="cancel-wrapper">
+            <a href="{% url 'listar_defesas' %}" class="cancel-btn">Cancelar</a>
+        </div>
+    </form>
+    {% else %}
+        <p>Você não tem permissão para editar esta defesa.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

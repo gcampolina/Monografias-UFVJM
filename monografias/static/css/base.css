@@ -1,0 +1,370 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Rodapé */
+footer {
+    width: 100%;
+    background-color: #ddd;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Textos dentro do footer */
+footer p {
+    color: #000;
+    margin: 0;
+    font-size: 14px;
+}
+
+main {
+    flex: 1;
+}
+
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+
+
+/* Form de delete */
+.delete-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-btn {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    text-decoration: underline;
+}
+
+
+/* Form de Logout */
+.logout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-btn {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    text-decoration: underline;
+}
+
+.cancel-wrapper {
+    text-align: center; 
+    margin-top: 15px;  
+    align-items: center;
+}
+
+
+/* Forms */
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.form-container2 {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.form-container2 h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+
+.table {
+    width: 100%;  
+}
+
+.table th, .table td {
+    text-align: left;
+    padding: 12px 8px; 
+    vertical-align: middle;
+}
+
+
+/* Campos de input */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Botões primários */
+.btn-primary {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #5a6268;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #f39c12;
+}
+
+.btns {
+    display: flex;
+    gap: 5px; 
+}
+
+.btns a {
+    flex: -1;           
+    text-align: center;
+    
+}
+
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Links do formulário */
+.form-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+
+/* BOTÃO E BARRA PESQUISA EM LISTAR MONOGRAFIAS */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.botaopesquisa {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.botaopesquisa:hover {
+    color: #f39c12;
+}
+
+
+
+/* links abaixo do form */
+.options {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+form #id_remember {
+    display: none;
+}
+
+form label{
+    display: none;
+}
+
+
+
+/* Formulário específico com labels visíveis */
+form.show-labels label {
+    display: block;      
+    font-weight: normal; 
+    margin-bottom: 4px;  
+    color: #333;
+}
+
+/* Cada grupo de campo */
+form.show-labels .form-group {
+    margin-bottom: 15px;  
+}
+
+/* Inputs e selects */
+form.show-labels input,
+form.show-labels select,
+form.show-labels textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Botão de submit */
+form.show-labels .btn-primary {
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 10px;
+    background-color: #5a6268;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form.show-labels .btn-primary:hover {
+    background-color: #f39c12;
+}
+
+form .errorlist {
+    display: none;
+}
+
+
+
+
+
+
+
+/* Navbar */
+
+.navbar span {
+    color: #007bff;
+}
+
+
+
+.navbar .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.navbar .navbar-brand:hover {
+    color: #f39c12;
+    text-decoration: none;
+}
+
+.navbar .nav-link {
+    color: #fff;
+    margin-left: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #f39c12;
+}
+
+.navbar-toggler {
+    border-color: #ecf0f1;
+}
+
+
+
+
+/* Container fixo no canto superior direito de NOTIFICAÇÃO*/
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1050;
+}
+
+.toast {
+    min-width: 250px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    animation: slideIn 0.5s ease, fadeOut 1s ease 2s forwards;
+}
+
+.toast.success { background-color: #28a745; }
+.toast.error   { background-color: #dc3545; }
+.toast.warning { background-color: #ffc107; color: #333; }
+.toast.info    { background-color: #17a2b8; }
+
+/* Animações da notificação */
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; }
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Novo Aluno{% endblock %}
+{% block content %}
+<div class="form-container">
+   <h2>Agendar Defesa</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="nota_final">Nota (0 a 100):</label>
+    <input type="number" name="nota_final" min="0" max="100" step="0.1" value="{{ banca.nota_final }}" class="form-control">
+    <button type="submit" class="btn btn-primary mt-2">Salvar Nota</button>
+</form>
+
+</div>
+{% endblock %}

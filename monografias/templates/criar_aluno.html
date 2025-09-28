@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Novo Aluno{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h2>Novo Aluno</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-primary">Salvar</button>
+    </form>
+    <div class="options">
+        <p><a href="{% url 'dashboard' %}">Voltar para o dashboard</a></p>
+    </div>
+</div>
+{% endblock %}

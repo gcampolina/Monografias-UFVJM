@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Criar Monografia{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Criar Monografia</h2>
+    
+    <form method="post" enctype="multipart/form-data" class="show-labels">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        {{ form.titulo.label_tag }}
+        {{ form.titulo }}
+    </div>
+
+    <div class="form-group">
+        {{ form.autor.label_tag }}
+        {{ form.autor }}
+    </div>
+
+    <div class="form-group">
+        {{ form.orientador.label_tag }}
+        {{ form.orientador }}
+    </div>
+
+    <div class="form-group">
+        {{ form.coorientador.label_tag }}
+        {{ form.coorientador }}
+    </div>
+
+    <div class="form-group">
+        {{ form.resumo.label_tag }}
+        {{ form.resumo }}
+    </div>
+
+    <div class="form-group">
+        {{ form.abstract.label_tag }}
+        {{ form.abstract }}
+    </div>
+
+    <div class="form-group">
+        {{ form.palavras_chave.label_tag }}
+        {{ form.palavras_chave }}
+    </div>
+
+
+    <div class="form-group">
+        {{ form.arquivo.label_tag }}
+        
+        {{ form.arquivo }}
+    </div>
+
+
+    <button type="submit" class="btn-primary">Salvar</button>
+</form>
+
+    <div class="options">
+        <p><a href="{% url 'dashboard' %}">Voltar para o dashboard</a></p>
+    </div>
+</div>
+{% endblock %}

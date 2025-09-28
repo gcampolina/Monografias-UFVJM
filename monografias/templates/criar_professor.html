@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Novo Professor{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Novo Professor</h2>
+    <form method="post" class="show-labels">
+        {% csrf_token %}
+
+        <div class="form-group">
+            {{ form.username }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password }}
+        </div>
+
+        <div class="form-group">
+            {{ form.first_name }}
+        </div>
+
+        <div class="form-group">
+            {{ form.last_name }}
+        </div>
+
+        <div class="form-group">
+            {{ form.email }}
+        </div>
+
+        <div class="form-group">
+            {{ form.titulação }}
+        </div>
+
+        <div class="form-group">
+            {{ form.area_pesquisa }}
+        </div>
+
+        <button type="submit" class="btn-primary">Salvar</button>
+    </form>
+
+    <div class="options">
+        <p><a href="{% url 'dashboard' %}">Voltar para o dashboard</a></p>
+    </div>
+</div>
+{% endblock %}
