@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import MonografiaForm, ProfessorForm, BancaForm
 from django.contrib.auth.decorators import login_required
-from .models import Monografia, Aluno, Professor, Banca
+from .models import Monografia, Professor, Banca
 from django.db.models import Q
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -49,7 +49,7 @@ def listar_defesas(request):
     is_admin = request.user.is_superuser or request.user.groups.filter(name='Administrador').exists()
     is_professor = request.user.groups.filter(name='Professor').exists()
 
-    # adiciona uma flag em cada banca
+
     for banca in defesas:
         banca.pode_gerenciar = (
             is_admin or
@@ -136,7 +136,7 @@ def listar_monografias(request):
 
     is_admin = request.user.is_superuser or request.user.groups.filter(name='Administrador').exists()
 
-    paginator = Paginator(monografias, 10)  # 10 resultados por página
+    paginator = Paginator(monografias, 10) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
@@ -156,7 +156,7 @@ def deletar_monografia(request, pk):
 
     if request.method == 'POST':
         monografia.delete()
-        return redirect('listar_monografias')  # aqui usa o name correto da URL
+        return redirect('listar_monografias')
 
     return render(request, 'deletar_monografia.html', {'monografia': monografia})
 
