@@ -3,6 +3,25 @@
 Aplicação web desenvolvida em **Django** para gerenciamento de monografias da UFVJM.  
 O sistema contempla **Alunos, Professores, Administradores** e **Bancas Avaliadoras**.
 
+🚀 Tecnologias Utilizadas:
+- **Linguagem**<br>
+Python 3.x
+
+- **Framework**<br>
+Django 5.x
+
+- **Banco de Dados**<br>
+PostgreSQL
+
+- **Front-end**<br>
+HTML5<br>
+CSS3<br>
+Bootstrap 5<br>
+Font Awesome<br>
+
+- **Controle de versão** <br>
+Git & GitHub
+
 ---
 
 ## 🚀 Como rodar o projeto localmente
