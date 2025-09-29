@@ -96,3 +96,4 @@ http://127.0.0.1:8000
   - Contêm monografia vinculada, professores avaliadores, data, horário e local.
   - Status: Agendada, Cancelada ou Realizada.
   - Atribuição de nota (0 a 100).
+  - Agendadas pelo Administrador
