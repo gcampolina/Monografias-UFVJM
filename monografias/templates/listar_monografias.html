@@ -45,20 +45,24 @@
                 {% endif %}
                 </td>
                 <td>
-                    <div class="btns">
-                        {% if is_admin %}
-                            <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
-                            <a href="{% url 'editar_monografia' monografia.pk %}" class="btn btn-sm btn-primary">Editar</a>
-                            <a href="{% url 'deletar_monografia' monografia.pk %}" class="btn btn-sm btn-danger">Excluir</a>
-                        {% else %}
-                            {% if monografia.arquivo %}
-                                <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
-                            {% else %}
-                                -
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </td>
+    <div class="btns">
+        {% if is_admin %}
+            <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
+            <a href="{% url 'editar_monografia' monografia.pk %}" class="btn btn-sm btn-primary">Editar</a>
+            <a href="{% url 'deletar_monografia' monografia.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+        {% else %}
+            {% if monografia.arquivo %}
+                <a href="{{ monografia.arquivo.url }}" class="btn btn-sm btn-success" download><i class="fa-solid fa-download"></i></a>
+            {% else %}
+                -
+            {% endif %}
+
+            {% if user.is_authenticated and user.professor and monografia.orientador.user == user %}
+                <a href="{% url 'deletar_monografia' monografia.pk %}" class="btn btn-sm btn-danger">Excluir</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</td>
             </tr>
             {% endfor %}
         </tbody>

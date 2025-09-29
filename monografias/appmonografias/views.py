@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User, Group
-from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseForbidden
 
 def home(request):
     return render(request, 'home.html')
@@ -148,13 +148,16 @@ def listar_monografias(request):
 
 @login_required
 def deletar_monografia(request, pk):
-    if not (request.user.is_superuser or request.user.groups.filter(name='Administrador').exists()):
-        raise PermissionDenied
-
     monografia = get_object_or_404(Monografia, pk=pk)
+
+    
+    if not request.user.is_superuser and monografia.orientador.user != request.user:
+        return HttpResponseForbidden()
+
     if request.method == 'POST':
         monografia.delete()
-        return redirect('listar_monografias')
+        return redirect('listar_monografias')  # aqui usa o name correto da URL
+
     return render(request, 'deletar_monografia.html', {'monografia': monografia})
 
 @login_required
