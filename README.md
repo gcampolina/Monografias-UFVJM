@@ -61,11 +61,8 @@ Instale o Git se não tiver.<br>
 sudo -u postgres psql<br>
 CREATE DATABASE monografias;<br>
 CREATE USER seu_usuario WITH PASSWORD 'sua_senha';<br>
-ALTER ROLE seu_usuario SET client_encoding TO 'utf8';<br>
-ALTER ROLE seu_usuario SET default_transaction_isolation TO 'read committed';<br>
-ALTER ROLE seu_usuario SET timezone TO 'UTC';<br>
 GRANT ALL PRIVILEGES ON DATABASE monografias TO seu_usuario;<br>
-
+\q
 
 No arquivo settings.py, ajuste as credenciais do PostgreSQL:<br>
 DATABASES = {<br>
