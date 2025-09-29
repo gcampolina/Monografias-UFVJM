@@ -12,7 +12,6 @@ urlpatterns = [
     path('monografia/deletar/<int:pk>/', views.deletar_monografia, name='deletar_monografia'),
 
     # Alunos e Professores
-    path('aluno/criar/', views.criar_aluno, name='criar_aluno'),
     path('professor/criar/', views.criar_professor, name='criar_professor'),
 
     # Bancas (defesas)

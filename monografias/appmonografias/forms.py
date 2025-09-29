@@ -54,26 +54,7 @@ class MonografiaForm(forms.ModelForm):
 class CustomSignupForm(SignupForm):
     username = forms.CharField(
         max_length=30,
-        widget=forms.TextInput(attrs={'placeholder': 'Digite seu usuário'})
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'placeholder': 'Digite seu e-mail (opcional)'})
-    )
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Digite sua senha'})
-    )
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirme sua senha'})
-    )
-
-
-class AlunoForm(forms.ModelForm):
-    username = forms.CharField(
-        max_length=30,
         widget=forms.TextInput(attrs={'placeholder': 'Usuário'})
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Senha'})
     )
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Nome'})
@@ -82,16 +63,42 @@ class AlunoForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Sobrenome'})
     )
     email = forms.EmailField(
-        required=False,
         widget=forms.EmailInput(attrs={'placeholder': 'E-mail (opcional)'})
     )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Digite sua senha'})
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirme sua senha'})
+    )
+    matricula = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Matrícula'})
+    )
 
-    class Meta:
-        model = Aluno
-        fields = ['matricula']
-        widgets = {
-            'matricula': forms.TextInput(attrs={'placeholder': 'Digite a matrícula do aluno'})
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # reordena os campos
+        self.fields = {
+            'email': self.fields['email'],
+            'first_name': self.fields['first_name'],
+            'last_name': self.fields['last_name'],
+            'username': self.fields['username'],
+            'matricula': self.fields['matricula'],
+            'password1': self.fields['password1'],
+            'password2': self.fields['password2'],
+            
         }
+
+    def save(self, request):
+        user = super().save(request)
+        matricula = self.cleaned_data['matricula']
+        Aluno.objects.create(user=user, matricula=matricula) 
+        return user
+
+
+
+
 
 
 class ProfessorForm(forms.ModelForm):

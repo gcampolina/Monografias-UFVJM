@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import MonografiaForm, AlunoForm, ProfessorForm, BancaForm
+from .forms import MonografiaForm, ProfessorForm, BancaForm
 from django.contrib.auth.decorators import login_required
 from .models import Monografia, Aluno, Professor, Banca
 from django.db.models import Q
@@ -172,28 +172,7 @@ def editar_monografia(request, pk):
 
 
 
-def criar_aluno(request):
-    if request.method == 'POST':
-        form = AlunoForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            user = User.objects.create_user(
-                username=data['username'],
-                password=data['password'],
-                first_name=data['first_name'],
-                last_name=data['last_name'],
-                email=data['email']
-            )
-            # adiciona grupo aluno
-            grupo = Group.objects.get(name='Aluno')
-            user.groups.add(grupo)
-            # cria objeto Aluno
-            Aluno.objects.create(user=user, matricula=data['matricula'])
-            messages.success(request, "Aluno criado com sucesso!")
-            return redirect('dashboard')
-    else:
-        form = AlunoForm()
-    return render(request, 'criar_aluno.html', {'form': form})
+
 
 def criar_professor(request):
     if request.method == 'POST':
