@@ -58,13 +58,14 @@ Instale o Git se não tiver.<br>
 *O PostgreSQL é um software externo, não é um pacote Python, então nunca vai aparecer no requirements.txt.*
 
 ### 🔹 4. Configure o banco de dados (PostgreSQL)
-⚠️ Lembre-se de criar o banco antes:<br>
-sudo -u postgres psql<br>
+
+"sudo -u postgres psql" (para entrar no prompt SQL)<br>
+*Execute os comandos abaixo no prompt SQL ou copie e cole!*<br><br>
 CREATE DATABASE monografias;<br>
 CREATE USER seu_usuario WITH PASSWORD 'sua_senha';<br>
 GRANT ALL PRIVILEGES ON DATABASE monografias TO seu_usuario;<br>
-ALTER DATABASE monografias OWNER TO seu_usuario;<br>
-\q
+ALTER DATABASE monografias OWNER TO seu_usuario;<br><br>
+"\q" para sair do prompt SQL
 
 No arquivo settings.py, ajuste as credenciais do PostgreSQL:<br>
 DATABASES = {<br>
