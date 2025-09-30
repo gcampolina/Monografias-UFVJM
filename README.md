@@ -70,17 +70,23 @@ sudo apt install postgresql postgresql-contrib
 
 ### 🔹 4. Configure o banco de dados (PostgreSQL)
 
+*para entrar no prompt SQL:*
 ```
-sudo -u postgres psql #para entrar no prompt SQL
+sudo -u postgres psql 
 ```
-*Execute os comandos abaixo no prompt SQL ou copie e cole!*
+*Execute os comandos abaixo no prompt SQL ou copie e cole!*<br>
+*Obs: altere o seu usuário e senha*
 ```
 CREATE DATABASE monografias;
 CREATE USER seu_usuario WITH PASSWORD 'sua_senha';
 GRANT ALL PRIVILEGES ON DATABASE monografias TO seu_usuario;
 ALTER DATABASE monografias OWNER TO seu_usuario;
-\q #para sair do prompt SQL
 ```
+*para sair do prompt SQL:*
+```
+\q 
+```
+
 
 No arquivo settings.py, ajuste as credenciais do PostgreSQL:
 ```
