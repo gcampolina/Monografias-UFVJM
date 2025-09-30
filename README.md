@@ -27,26 +27,48 @@ O sistema contempla **Alunos, Professores, Administradores** e **Bancas Avaliado
 ## 🚀 Como rodar o projeto localmente
 
 ### 🔹 1. Clone o repositório
+
+Instale o Git se não tiver.<br>
+- sudo apt update<br>
+- sudo apt install git<br>
+- git clone https://github.com/gcampolina/Monografias-UFVJM<br>
+
 ### 🔹 2. Crie o ambiente virtual
-LINUX: <br>
-python3 -m venv venv <br>
-source venv/bin/activate
+**LINUX:** <br>
+- python3 -m venv venv <br>
+- source venv/bin/activate
 
-WINDOWS: <br>
-python -m venv venv <br>
-venv\Scripts\activate
+**WINDOWS:** <br>
+- python -m venv venv <br>
+- venv\Scripts\activate
 
 
-### 🔹 3. Instale as dependências
-pip install -r requirements.txt
+### 🔹 3. Ative a Venv e instale as dependências
+**LINUX:** <br>
+- python3 -m venv venv <br>
+- source venv/bin/activate <br>
+- pip install -r requirements.txt
 
+**WINDOWS:**<br>
+- .venv\Scripts\activate<br>
+- pip install -r requirements.txt
+
+⚠️Lembre-se que o Postgree também precisa ser instalado no SO<br>
+- sudo apt install postgresql postgresql-contrib <br>
+*O PostgreSQL é um software externo, não é um pacote Python, então nunca vai aparecer no requirements.txt.*
 
 ### 🔹 4. Configure o banco de dados (PostgreSQL)
+sudo -u postgres psql<br>
+CREATE DATABASE monografias;<br>
+CREATE USER seu_usuario WITH PASSWORD 'sua_senha';<br>
+GRANT ALL PRIVILEGES ON DATABASE monografias TO seu_usuario;<br>
+\q
+
 No arquivo settings.py, ajuste as credenciais do PostgreSQL:<br>
 DATABASES = {<br>
     'default': {<br>
         'ENGINE': 'django.db.backends.postgresql',<br>
-        'NAME': 'monografias_db',<br>
+        'NAME': 'monografias',<br>
         'USER': 'seu_usuário',<br>
         'PASSWORD': 'sua_senha',<br>
         'HOST': 'localhost',<br>
