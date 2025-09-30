@@ -21,7 +21,7 @@ def dashboard(request):
 
 @login_required
 def dashboard(request):
-    if request.user.groups.filter(name='Administrador').exists():
+    if request.user.is_superuser or request.user.groups.filter(name='Administrador').exists():
         return render(request, 'dashboard_admin.html')
     elif request.user.groups.filter(name='Professor').exists():
         return render(request, 'dashboard_professor.html')
